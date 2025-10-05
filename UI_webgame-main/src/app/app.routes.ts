@@ -12,21 +12,23 @@ import { Gencode } from './pageadmin/gencode/gencode';
 import { Addgame } from './pageadmin/addgame/addgame';
 import { Historyuser } from './pageadmin/history/history';
 import { Hisdetail } from './pageadmin/hisdetail/hisdetail';
+import { AdminGuard, AuthGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  { path: '', component: Login },
-  { path: 'sellpage', component: SellPage },
-  { path: 'sellpage/:id', component: Gamedetail },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'sellpage', component: SellPage, canActivate: [AuthGuard] },
+  { path: 'sellpage/:id', component: Gamedetail, canActivate: [AuthGuard] },
   { path: 'register', component: Register },
-  { path: 'profile', component: Profile },
-  { path: 'profile/:id', component: Profile },
-  { path: 'game-library', component: Gamelibrary },
-  { path: 'cart', component: Cart },
-  { path: 'money', component: Money },
+  { path: 'profile', component: Profile, canActivate: [AuthGuard] },
+  { path: 'profile/:id', component: Profile, canActivate: [AuthGuard] },
+  { path: 'game-library', component: Gamelibrary, canActivate: [AuthGuard] },
+  { path: 'cart', component: Cart, canActivate: [AuthGuard] },
+  { path: 'money', component: Money, canActivate: [AuthGuard] },
   //-----------------admin-----------------
-  { path: 'admin', component: Adminpage },
-  { path: 'history', component: Historyuser },
-  { path: 'gencode', component: Gencode },
-  { path: 'addgame', component: Addgame },
-  { path: 'hisdetail', component: Hisdetail },
+  { path: 'admin', component: Adminpage, canActivate: [AdminGuard] },
+  { path: 'history', component: Historyuser, canActivate: [AdminGuard] },
+  { path: 'gencode', component: Gencode, canActivate: [AdminGuard] },
+  { path: 'addgame', component: Addgame, canActivate: [AdminGuard] },
+  { path: 'hisdetail', component: Hisdetail, canActivate: [AdminGuard] },
 ];

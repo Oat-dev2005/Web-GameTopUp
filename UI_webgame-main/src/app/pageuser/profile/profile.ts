@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Webservice } from '../../services/api/webservice';
 import { UserGetResponse } from '../../model/ีuser_res';
+import { AuthService } from '../../services/api/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,7 +26,8 @@ export class Profile {
   constructor(
     private router: Router,
     private webService: Webservice,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthService
   ) {}
 
   async ngOnInit() {
@@ -58,5 +60,9 @@ export class Profile {
     } catch (error) {
       console.error('Save failed:', error);
     }
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

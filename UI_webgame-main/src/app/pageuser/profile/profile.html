@@ -8,7 +8,7 @@
     <div>role: {{ role }}</div>
     <div>cash : 10000 bath</div>
     <a routerLink="/money" class="but">เติมตัง</a>
-    <a routerLink="/" class="logout">ออกจากระบบ</a>
+    <a (click)="logout()" class="logout">ออกจากระบบ</a>
   </div>
 
   <div class="payment-history-container">
