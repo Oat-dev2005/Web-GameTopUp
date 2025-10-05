@@ -1,0 +1,239 @@
+/* กล่องข้อมูลผู้ใช้ */
+.user-profile-card {
+  background-color: #121212; /* สีดำเข้ม */
+  color: #eee; /* ตัวหนังสือสีขาวจาง ๆ */
+  width: 400px;
+  margin: 30px auto;
+  padding: 55px 50px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-image {
+  width: 100;
+  height: 300px;
+  border-radius: 5%; /* ทำให้ภาพเป็นวงกลม */
+  object-fit: cover; /* ให้ภาพไม่เบี้ยว */
+  margin-bottom: 15px; /* เพิ่มช่องว่างด้านล่าง */
+}
+
+.con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #121212;
+}
+
+/* ข้อความข้อมูล */
+.user-profile-card div {
+  font-size: 16px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+/* ลบเส้นขีดบรรทัดสุดท้าย */
+.user-profile-card div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ลิงก์ปุ่ม เติมตัง / ออกจากระบบ */
+.logout {
+  display: inline-block;
+  text-align: center;
+  background-color: #e74c3c;
+  color: white;
+  padding: 12px 25px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* เมื่อ hover */
+.logout:hover {
+  background-color: #c0392b;
+}
+
+/* จัดลิงก์ให้อยู่คนละบรรทัด หรือต่อกันได้ */
+.logout {
+  margin-top: 10px;
+}
+
+.but {
+  display: inline-block;
+  text-align: center;
+  background-color: green;
+  color: white;
+  padding: 12px 25px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* เมื่อ hover */
+.but:hover {
+  background-color: #06ab09;
+}
+
+/* จัดลิงก์ให้อยู่คนละบรรทัด หรือต่อกันได้ */
+.but {
+  margin-top: 10px;
+}
+
+.payment-history-container {
+  width: 100vw; /* เต็มความกว้าง viewport */
+  max-width: 90%; /* ไม่เกิน 100% */
+  margin: 30px 0; /* ด้านบน-ล่าง 30px ด้านซ้าย-ขวา 0 */
+  background-color: #121212;
+  padding: 25px 40px; /* เติมช่องว่างซ้ายขวามากขึ้น */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  color: #eee;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  min-height: 90vh; /* ความสูงประมาณเต็มหน้าจอ */
+}
+
+.payment-history-container h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+  border-bottom: 2px solid #e74c3c;
+  padding-bottom: 10px;
+  color: #f39c12;
+}
+
+/* ลิสต์รายการ */
+.payment-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 70vh; /* กำหนดความสูงให้เลื่อน scroll ได้ */
+  overflow-y: auto;
+}
+
+/* แต่ละไอเท็ม */
+.payment-item {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 15px 10px;
+  border-bottom: 1px solid #333;
+  align-items: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+
+/* hover เพิ่มความสว่าง */
+.payment-item:hover {
+  background-color: #1f1f1f;
+  box-shadow: inset 3px 0 0 #e74c3c;
+}
+
+/* สีแยกประเภท เติมเงิน / ซื้อเกม */
+/* note: CSS ปกติไม่มี :contains() ควรใช้ JS เพิ่ม class แทน */
+.payment-type.เติมเงิน {
+  background-color: #3498db;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+}
+
+.payment-type.ซื้อเกม {
+  background-color: #e74c3c;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+}
+
+/* กำหนดให้ amount ชัดเจน */
+.amount {
+  font-weight: 700;
+  color: #f39c12;
+  text-align: right;
+}
+
+/* วันที่ */
+.date {
+  font-size: 14px;
+  color: #999;
+  text-align: right;
+}
+
+/* Responsive: ปรับ grid เป็น 2 คอลัมน์ เมื่อจอเล็ก */
+@media (max-width: 768px) {
+  .payment-item {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    font-size: 14px;
+  }
+}
+
+/* Responsive: จอเล็กสุด 1 คอลัมน์ */
+@media (max-width: 480px) {
+  .payment-item {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    font-size: 14px;
+  }
+
+  .amount,
+  .date {
+    text-align: left;
+  }
+}
+
+.field {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.field input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.save-btn {
+  margin-top: 15px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}

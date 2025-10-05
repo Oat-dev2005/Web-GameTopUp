@@ -1,0 +1,56 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  color: white;
+  padding: 0 20px;
+  height: 80px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .logo {
+      width: 50px; /* ปรับขนาดใหญ่ขึ้น */
+      height: 50px;
+      background-image: url("https://static.vecteezy.com/system/resources/previews/017/068/883/non_2x/dark-ninja-mascot-logo-for-team-esport-gaming-vector.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 4px;
+
+      
+      &:hover {
+        background-color: #555;
+      }
+    }
+    .money {
+      font-weight: bold;
+      color: #1bc005; /* สีทอง */
+    }
+  }
+}

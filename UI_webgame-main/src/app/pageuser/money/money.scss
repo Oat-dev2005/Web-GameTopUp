@@ -1,0 +1,110 @@
+/* ตัว root ของหน้า */
+body {
+  background-color: #121212; /* พื้นหลังสีดำ */
+  color: #e0e0e0; /* ข้อความสีอ่อน */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+/* กล่อง payment-container */
+.payment-container {
+  background-color: #1e1e1e; /* พื้นหลังกล่อง */
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(42, 42, 42, 0.3), 0 8px 20px rgba(255, 255, 255, 0.1); /* เงาดำและเงาขาว/เทา */
+  width: 320px;
+  text-align: center;
+}
+
+
+/* หัวข้อ */
+.payment-container h2 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* ปุ่มเลือกยอดเงิน */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 150px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.buttons button:hover {
+  background-color: #555;
+  transform: scale(1.05); /* ขยายปุ่มเมื่อ hover */
+}
+
+.buttons button:focus {
+  outline: none;
+}
+
+/* ช่องกรอกจำนวนเงิน */
+input[type="number"] {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="number"]::placeholder {
+  color: #888;
+}
+
+.but {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ปุ่มยืนยันการเติมเงิน */
+.submit-btn {
+  background-color: #4CAF50; /* สีเขียว */
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.submit-btn:focus {
+  outline: none;
+}
+
+.bg {
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}

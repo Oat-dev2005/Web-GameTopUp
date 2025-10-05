@@ -1,0 +1,143 @@
+/* พื้นหลังของหน้า */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* พื้นหลังสีขาว */
+  color: #333; /* ตัวอักษรสีเทาเข้ม */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
+}
+
+/* กล่องสมัครสมาชิก */
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #121212;
+}
+
+.register-box {
+  background-color: #ffffff; /* พื้นหลังของกล่องสมัครสมาชิก (สีขาว) */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงาอ่อน */
+  width: 100%;
+  max-width: 400px; /* กำหนดความกว้างสูงสุดของกล่อง */
+  text-align: center;
+  color: #333; /* ตัวอักษรสีเทาเข้ม */
+}
+
+.register-box h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333; /* สีดำ */
+}
+
+.register-box .input-group {
+  margin-bottom: 15px;
+}
+
+/* แบบฟอร์ม */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+mat-label {
+  color: #333; /* สีดำ */
+}
+
+mat-input-element {
+  color: #333; /* สีของข้อความใน input */
+}
+
+mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #333; /* กรอบของฟอร์มสีดำ */
+}
+
+mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  border-width: 2px;
+}
+
+input {
+  background-color: #f5f5f5; /* พื้นหลังของช่องกรอกข้อมูล */
+  color: #333; /* สีของข้อความในช่องกรอก */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd; /* กรอบช่องกรอกข้อมูล */
+}
+
+/* ปุ่มสมัครสมาชิก */
+button[type="submit"] {
+  background-color: #333; /* สีดำ */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #555; /* สีดำเข้ม */
+  transform: scale(1.05); /* ขยายขนาดเล็กน้อยเมื่อ hover */
+}
+
+/* ปุ่มกลับสู่หน้าล็อกอิน */
+button[mat-button] {
+  background-color: transparent;
+  color: #333; /* สีดำ */
+  border: 2px solid #333; /* ขอบสีดำ */
+  margin-top: 15px;
+}
+
+button[mat-button]:hover {
+  background-color: #333; /* พื้นหลังสีดำ */
+  color: white; /* ตัวอักษรสีขาว */
+}
+
+/* ปรับขนาดรูปภาพ */
+.input-group input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+/* สไตล์สำหรับข้อความบอกข้อผิดพลาดหรือความช่วยเหลือ */
+.error-message {
+  color: #e74c3c; /* สีแดงสำหรับข้อความผิดพลาด */
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* ปรับขนาดและระยะห่างสำหรับหน้าจอเล็ก */
+@media (max-width: 480px) {
+  .register-box {
+    max-width: 90%; /* ลดขนาดของกล่องสมัครสมาชิก */
+    padding: 15px;
+  }
+
+  .register-box h3 {
+    font-size: 1.5rem;
+  }
+
+  button[type="submit"] {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  button[mat-button] {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

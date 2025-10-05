@@ -1,0 +1,54 @@
+<app-header></app-header>
+<body>
+  <div class="search">
+  <!-- ช่องค้นหาจากชื่อเกม -->
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchByName"
+      placeholder="ค้นหาชื่อเกม"
+      class="search-input"
+    />
+  </div>
+
+  <!-- ช่องค้นหาจากประเภทเกม -->
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchByType"
+      placeholder="ค้นหาประเภทเกม"
+      class="search-input"
+    />
+  </div>
+</div>
+
+<div class="game-container">
+  <div
+    class="game-card"
+    *ngFor="let game of getFilteredGames(); trackBy: trackByGameId"
+  >
+    <a [routerLink]="['/sellpage', game.id]" class="game-link">
+      <img
+        [src]="game.images || 'assets/images/default.jpg'"
+        [alt]="game.name"
+      />
+      <div class="game-name">{{ game.name }}</div>
+      <div class="text">ประเภท: {{ game.type }}</div>
+      <div *ngIf="isTop5(game.id)" class="game-name top-5">
+        ขายดี อันดับ {{ game.rank }}
+      </div>
+      <div class="price-cart-row">
+        <div class="price">ราคา: {{ game.price }}</div>
+        <button class="add-to-cart-btn" (click)="addToCart(game)">
+          เพิ่มลงตะกร้า
+        </button>
+      </div>
+      <div class="footer">
+        <div class="text">ว่างจำหน่าย: 12/12/2024</div>
+        <div class="text">ขายไปแล้ว: {{ game.sold }}</div>
+      </div>
+    </a>
+  </div>
+</div>
+</body>
+

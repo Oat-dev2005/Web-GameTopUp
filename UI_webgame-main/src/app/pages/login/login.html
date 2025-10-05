@@ -1,0 +1,40 @@
+<body>
+  <div class="login-wrapper">
+    <div class="login-box">
+      <!--       <div class="logo"></div>
+ -->
+      <h3>ระบบร้านขายเกม</h3>
+      <p>เข้าสู่ระบบสมาชิก</p>
+
+      <form #loginForm="ngForm" (ngSubmit)="loginUsers()">
+        <mat-form-field appearance="outline" class="input-group">
+          <mat-label>อีเมล์</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            required
+            [(ngModel)]="email"
+            #emailInput="ngModel"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-group">
+          <mat-label>รหัสผ่าน</mat-label>
+          <input
+            matInput
+            type="password"
+            name="password"
+            required
+            [(ngModel)]="password"
+            #passwordInput="ngModel"
+          />
+        </mat-form-field>
+
+        <button type="submit">เข้าสู่ระบบ</button>
+      </form>
+
+      <button routerLink="/register">สมัครสมาชิก</button>
+    </div>
+  </div>
+</body>

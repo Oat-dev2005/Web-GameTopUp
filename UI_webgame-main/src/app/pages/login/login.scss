@@ -1,0 +1,149 @@
+/* พื้นหลังของหน้า */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* พื้นหลังสีขาว */
+  color: #333; /* ตัวอักษรสีเทาเข้ม */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
+}
+
+/* กล่องเข้าสู่ระบบ */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #121212;
+}
+
+.login-box {
+  background-color: #ffffff; /* พื้นหลังของกล่องเข้าสู่ระบบ (สีขาว) */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงาอ่อน */
+  width: 100%;
+  max-width: 350px; /* กำหนดความกว้างสูงสุดของกล่อง */
+  text-align: center;
+  color: #333; /* ตัวอักษรสีเทาเข้ม */
+}
+
+/* โลโก้ */
+.login-box .logo {
+  width: 100px;
+  height: 100px;
+  margin-left: 130px;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/017/068/883/non_2x/dark-ninja-mascot-logo-for-team-esport-gaming-vector.jpg");
+  background-size: cover;
+  margin-bottom: 15px;
+}
+
+/* ชื่อเรื่อง */
+.login-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333; /* สีดำ */
+}
+
+/* คำบรรยาย */
+.login-box p {
+  font-size: 1rem;
+  color: #777; /* สีเทาอ่อน */
+  margin-bottom: 15px;
+}
+
+/* แบบฟอร์ม */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+mat-label {
+  color: #333; /* สีดำ */
+}
+
+mat-input-element {
+  color: #333; /* สีของข้อความใน input */
+}
+
+mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #333; /* กรอบของฟอร์มสีดำ */
+}
+
+mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  border-width: 2px;
+}
+
+input {
+  background-color: #f5f5f5; /* พื้นหลังของช่องกรอกข้อมูล */
+  color: #333; /* สีของข้อความในช่องกรอก */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd; /* กรอบช่องกรอกข้อมูล */
+}
+
+/* ปุ่ม */
+button {
+  background-color: #333; /* สีดำ */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #555; /* สีดำเข้ม */
+  transform: scale(1.05); /* ขยายขนาดเล็กน้อยเมื่อ hover */
+}
+
+/* ปุ่มสมัครสมาชิก */
+button[routerLink] {
+  background-color: transparent;
+  color: #333; /* สีดำ */
+  border: 2px solid #333; /* ขอบสีดำ */
+  margin-top: 15px;
+}
+
+button[routerLink]:hover {
+  background-color: #333; /* พื้นหลังสีดำ */
+  color: white; /* ตัวอักษรสีขาว */
+}
+
+/* เพิ่มเอฟเฟกต์ hover สำหรับฟอร์ม */
+mat-form-field:hover,
+input:hover {
+  border-color: #333; /* สีดำ */
+}
+
+/* ปรับขนาดเล็กสำหรับหน้าจอมือถือ */
+@media (max-width: 480px) {
+  .login-box {
+    max-width: 90%; /* ลดขนาดของกล่องเข้าสู่ระบบ */
+    padding: 15px;
+  }
+
+  .login-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .login-box p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  mat-form-field {
+    margin-bottom: 10px;
+  }
+}

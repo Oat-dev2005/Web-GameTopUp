@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="bg">
+  <div class="payment-container">
+    <h2>ระบบเติมเงิน</h2>
+
+    <div class="but">
+        <div class="buttons">
+      <button *ngFor="let amount of amounts" (click)="setAmount(amount)">
+        {{ amount }} บาท
+      </button>
+    </div>
+    </div>
+    
+
+    <!-- ช่องกรอกจำนวนเงิน -->
+    <input
+      type="number"
+      [(ngModel)]="amountInput"
+      placeholder="กรอกจำนวนเงิน"
+    />
+
+    <!-- ปุ่มยืนยันการเติมเงิน -->
+    <button class="submit-btn" (click)="submitPayment()">
+      ยืนยันการเติมเงิน
+    </button>
+  </div>
+</div>

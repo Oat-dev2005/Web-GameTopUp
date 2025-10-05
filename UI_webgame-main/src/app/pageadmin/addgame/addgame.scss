@@ -1,0 +1,107 @@
+html, body {
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* คอนเทนเนอร์ฟอร์ม */
+.add-game-container {
+  max-width: 600px;
+  margin: auto;
+  background-color: #1f1f1f;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+}
+
+.add-game-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #f39c12;
+}
+
+/* รูปแบบ field */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-weight: 500;
+  color: #ccc;
+}
+
+.form-field input,
+.form-field textarea {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #f39c12;
+  outline: none;
+}
+
+/* ปุ่ม */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.add-btn,
+.cancel-btn {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: white;
+}
+
+.add-btn {
+  background-color: #e67e22;
+}
+
+.add-btn:hover {
+  background-color: #cf711b;
+}
+
+.cancel-btn {
+  background-color: #e74c3c;
+}
+
+.cancel-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+  .add-game-container {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .add-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}

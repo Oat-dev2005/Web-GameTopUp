@@ -1,0 +1,211 @@
+/* ตั้งค่าพื้นฐาน */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* พื้นหลังสีดำ */
+  color: #e0e0e0; /* ตัวอักษรสีเทาอ่อน */
+  margin: 0;
+  padding: 0;
+}
+
+/* แบ็กกราวด์ทั่วไป */
+.bg {
+  min-height: 84vh;
+  padding: 20px;
+  background-color: #121212; /* พื้นหลังสีดำ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ตะกร้าของฉัน */
+.cart-container {
+  width: 90%;
+  max-width: 500px; /* ขนาดสูงสุดของตะกร้า */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #1e1e1e; /* สีพื้นหลังตะกร้าเข้มขึ้น */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ดูลึก */
+  font-size: 1rem;
+}
+
+/* หัวข้อ */
+.cart-container h1 {
+  font-size: 2rem;
+  color: #f39c12; /* สีส้มสด */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ถ้าไม่มีสินค้าในตะกร้า */
+.cart-container .empty-cart {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #888; /* สีเทาอ่อน */
+  margin-top: 30px;
+}
+
+/* รายการสินค้าที่อยู่ในตะกร้า */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #444; /* สีเทาเข้มเพื่อให้ดูชัดเจน */
+  background-color: #2a2a2a; /* สีพื้นหลังของรายการสินค้า */
+  border-radius: 8px;
+}
+
+.text1 {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.cart-item img {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.cart-item div {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-item .name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f39c12; /* สีส้มเพื่อเน้นชื่อสินค้า */
+  margin-bottom: 8px;
+}
+
+.cart-item .price {
+  font-size: 1.1rem;
+  color: #e74c3c; /* สีแดงสดเพื่อเน้นราคา */
+  font-weight: bold;
+}
+
+.cart-item .text {
+  color: #aaa; /* สีเทาอ่อนสำหรับคำบรรยาย */
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.cart-item button {
+  background-color: #e74c3c; /* สีแดง */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: flex-start; /* ทำให้ปุ่มอยู่ที่ด้านซ้าย */
+}
+
+.cart-item button:hover {
+  background-color: #c0392b; /* สีแดงเข้ม */
+  transform: scale(1.05); /* เพิ่มขนาดเล็กน้อยเมื่อ hover */
+}
+
+/* ช่องใส่รหัสส่วนลด */
+.discount-section {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #333; /* สีพื้นหลังเข้ม */
+  border-radius: 8px;
+  color: white;
+  width: 500px;
+}
+
+.discount-section input {
+  padding: 10px;
+  width: calc(100% - 20px); /* ทำให้ช่องใส่รหัสส่วนลดเต็มความกว้าง */
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #222; /* พื้นหลังช่องกรอก */
+  color: #fff;
+  font-size: 1rem;
+}
+
+.discount-section button {
+  background-color: #f39c12; /* สีส้ม */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.discount-section button:hover {
+  background-color: #e67e22; /* สีส้มเข้ม */
+}
+
+/* แสดงส่วนลด */
+.discount-section p {
+  font-size: 1.1rem;
+  color: #2ecc71; /* สีเขียวสด */
+  margin-top: 15px;
+}
+
+/* จัดตำแหน่งสุดท้าย (footer) */
+.cart-footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.cart-footer .total-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #c3c7c5; /* สีเขียวสดเพื่อแสดงราคาสุทธิ */
+}
+
+.cart-footer .checkout-button {
+  background-color: #2ecc71; /* สีเขียว */
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-footer .checkout-button:hover {
+  background-color: #27ae60; /* สีเขียวเข้ม */
+}
+
+/* ปุ่ม "ซื้อเกม" */
+.but {
+  background-color: #28a745; /* สีเขียวสด */
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.but:hover {
+  background-color: #218838; /* สีเขียวเข้ม */
+  transform: scale(1.05); /* เพิ่มขนาดเล็กน้อยเมื่อ hover */
+}
+
+.total-price {
+  color: #fff;
+}

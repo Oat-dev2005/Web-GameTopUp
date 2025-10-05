@@ -1,0 +1,108 @@
+body {
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.discount-code-container {
+  width: 400px;
+  margin: 40px auto;
+  background-color: #1f1f1f;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+}
+
+.discount-code-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #ccc;
+}
+
+.form-field input {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.form-field input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.add-btn,
+.cancel-btn {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: white;
+}
+
+.add-btn {
+  background-color: #4caf50;
+}
+
+.add-btn:hover {
+  background-color: #43a047;
+}
+
+.cancel-btn {
+  background-color: #e74c3c;
+}
+
+.cancel-btn:hover {
+  background-color: #c0392b;
+}
+
+@media screen and (max-width: 480px) {
+  .discount-code-container {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .add-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}

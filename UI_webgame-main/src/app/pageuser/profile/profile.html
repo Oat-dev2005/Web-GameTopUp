@@ -1,0 +1,79 @@
+<app-header></app-header>
+
+<div class="con">
+  <div class="user-profile-card">
+    <!-- <img [src]="imageUrl" class="user-image" /> -->
+    <div>email: {{ email }}</div>
+    <div>name: {{ username }}</div>
+    <div>role: {{ role }}</div>
+    <div>cash : 10000 bath</div>
+    <a routerLink="/money" class="but">เติมตัง</a>
+    <a routerLink="/" class="logout">ออกจากระบบ</a>
+  </div>
+
+  <div class="payment-history-container">
+    <h2>ประวัติการชำระเงิน</h2>
+    <ul class="payment-history-list">
+      <li class="payment-item">
+        <div class="game-title">เติมเงินเข้าระบบ</div>
+        <div class="payment-type">เติมเงิน</div>
+        <div class="amount">500 บาท</div>
+        <div class="date">2025-09-28</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เกม: Space Battle</div>
+        <div class="payment-type">ซื้อเกม</div>
+        <div class="amount">1200 บาท</div>
+        <div class="date">2025-09-25</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เติมเงินเข้าระบบ</div>
+        <div class="payment-type">เติมเงิน</div>
+        <div class="amount">300 บาท</div>
+        <div class="date">2025-09-20</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เกม: Monster Hunt</div>
+        <div class="payment-type">ซื้อเกม</div>
+        <div class="amount">1500 บาท</div>
+        <div class="date">2025-09-18</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เติมเงินเข้าระบบ</div>
+        <div class="payment-type">เติมเงิน</div>
+        <div class="amount">250 บาท</div>
+        <div class="date">2025-09-15</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เกม: Speed Racer</div>
+        <div class="payment-type">ซื้อเกม</div>
+        <div class="amount">1300 บาท</div>
+        <div class="date">2025-09-12</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เติมเงินเข้าระบบ</div>
+        <div class="payment-type">เติมเงิน</div>
+        <div class="amount">400 บาท</div>
+        <div class="date">2025-09-10</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เติมเงินเข้าระบบ</div>
+        <div class="payment-type">ซื้อเกม</div>
+        <div class="amount">1000 บาท</div>
+        <div class="date">2025-09-08</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เติมเงินเข้าระบบ</div>
+        <div class="payment-type">เติมเงิน</div>
+        <div class="amount">350 บาท</div>
+        <div class="date">2025-09-05</div>
+      </li>
+      <li class="payment-item">
+        <div class="game-title">เกม: Battle Arena</div>
+        <div class="payment-type">ซื้อเกม</div>
+        <div class="amount">1600 บาท</div>
+        <div class="date">2025-09-02</div>
+      </li>
+    </ul>
+  </div>
+</div>

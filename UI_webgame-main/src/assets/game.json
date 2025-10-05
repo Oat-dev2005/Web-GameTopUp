@@ -1,0 +1,138 @@
+[
+  {
+    "id": 1,
+    "name": "Fortnite",
+    "images": "https://cdn1.epicgames.com/offer/fn/FNBR_37-00_C6S4_EGS_Launcher_KeyArt_FNLogo_Carousel_PDP_2560x1440_logo_2560x1440-04348f5d3d52391f572e8c1050ddc737",
+    "price": 300,
+    "type": "Action",
+    "sold": "20",
+    "details": "เกมแบทเทิลรอยัลที่ผู้เล่นจะต้องต่อสู้กับผู้เล่นคนอื่นในโลกเปิดจนเหลือผู้รอดชีวิตคนสุดท้าย ภาพสวยเหมาะกับวัยเด็ก"
+  },
+  {
+    "id": 2,
+    "name": "PUBG",
+    "images": "https://cdn1.epicgames.com/spt-assets/53ec4985296b4facbe3a8d8d019afba9/pubg-battlegrounds-19vwb.jpg",
+    "price": 550,
+    "type": "Action",
+    "sold": "19",
+    "details": "เกมแบทเทิลรอยัลที่ผู้เล่นจะต้องต่อสู้กับผู้เล่นคนอื่นในโลกเปิดจนเหลือผู้รอดชีวิตคนสุดท้าย เน้นความสมจริง"
+  },
+  {
+    "id": 3,
+    "name": "Sekiro: Shadows Die Twice",
+    "images": "https://i.ytimg.com/vi/eD5xx8IKO6c/maxresdefault.jpg",
+    "price": 1800,
+    "type": "Action",
+    "sold": "18",
+    "details": "เกมที่เน้นการต่อสู้ด้วยดาบในโลกญี่ปุ่นยุคเซ็นโกคุ พร้อมกับระบบความตายที่ยากและท้าทาย"
+  },
+  {
+    "id": 4,
+    "name": "Overwatch",
+    "images": "https://xboxwire.thesourcemediaassets.com/sites/2/2022/10/Header-9eb920ee0baf53c4b7d2.jpg",
+    "price": 1200,
+    "type": "Shooter",
+    "sold": "17",
+    "details": "เกมยิงแบบทีมที่ผสมผสานกับกลยุทธ์และตัวละครที่มีทักษะเฉพาะตัว"
+  },
+  {
+    "id": 5,
+    "name": "Battlefield V",
+    "images": "https://image.api.playstation.com/vulcan/img/rnd/202010/1520/CMyTUxgeMmcaJFJvnYltXzG7.jpg",
+    "price": 490,
+    "type": "Shooter",
+    "sold": "15",
+    "details": "เกมยิงที่มีฉากสงครามโลกครั้งที่ 2 และเน้นการต่อสู้ในพื้นที่ขนาดใหญ่"
+  },
+  {
+    "id": 6,
+    "name": "CSGO",
+    "images": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861",
+    "price": 300,
+    "type": "Shooter",
+    "sold": "14",
+    "details": "เกมยิงแบบทีมที่มีการวางแผนและการยิงที่แม่นยำเป็นหลัก"
+  },
+  {
+    "id": 7,
+    "name": "FIFA 23",
+    "images": "https://cdn2.unrealengine.com/ea-sports-fifa-23-is-coming-to-the-epic-games-store-1920x1080-398e19351a82.jpg",
+    "price": 1200,
+    "type": "Sports",
+    "sold": "13",
+    "details": "เกมฟุตบอลที่มีการจำลองการแข่งขันจริง ๆ รวมถึงโหมดออนไลน์และผู้เล่นหลายคน"
+  },
+  {
+    "id": 8,
+    "name": "WWE 2K23",
+    "images": "https://mp1st.com/wp-content/uploads/2023/03/WWE-2K23-Season-Pass.jpg.webp",
+    "price": 800,
+    "type": "Sports",
+    "sold": "13",
+    "details": "เกมมวยปล้ำที่ผู้เล่นสามารถควบคุมเหล่านักมวยปล้ำชื่อดังในเวที WWE"
+  },
+  {
+    "id": 9,
+    "name": "NBA 2K23",
+    "images": "https://xboxwire.thesourcemediaassets.com/sites/2/2022/09/N23_KEY_KA_Horiz_1920x1080-e7313fe953f0a2844422.jpg",
+    "price": 800,
+    "type": "Sports",
+    "sold": "13",
+    "details": "เกมบาสเกตบอลที่มีระบบการเล่นและกราฟิกที่สมจริง พร้อมโหมด MyCareer"
+  },
+  {
+    "id": 10,
+    "name": "Resident Evil Village",
+    "images": "https://i.ytimg.com/vi/WCxmbavVqys/maxresdefault.jpg",
+    "price": 1200,
+    "type": "Horror",
+    "sold": "13",
+    "details": "เกมเอาตัวรอดจากซอมบี้และสิ่งมีชีวิตเหนือธรรมชาติในหมู่บ้านที่ลึกลับ"
+  },
+  {
+    "id": 11,
+    "name": "Red Dead Redemption 2",
+    "images": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg",
+    "price": 450,
+    "type": "Open World",
+    "sold": "13",
+    "details": "เกมแนวโลกเปิดที่จำลองชีวิตของคาวบอยในยุคปลายศตวรรษที่ 19"
+  },
+  {
+    "id": 12,
+    "name": "Silent Hill 2",
+    "images": "https://i.guim.co.uk/img/media/9c8636f13e52b7c96da9849c2def015c2d2f2c7c/40_115_2647_1588/master/2647.jpg?width=1200&quality=85&auto=format&fit=max&s=8ce407591095a7904143b4a52e00ae51",
+    "price": 1300,
+    "type": "Horror",
+    "sold": "13",
+    "details": "เกมสยองขวัญที่มีเนื้อหามืดมนและเต็มไปด้วยปริศนา พร้อมบรรยากาศที่เต็มไปด้วยความวิตกกังวล"
+  },
+  {
+    "id": 13,
+    "name": "Outlast",
+    "images": "https://www.beartai.com/wp-content/uploads/2021/08/outlast-keyart2-HugoRichard-1920x1080-1.jpg",
+    "price": 200,
+    "type": "Horror",
+    "sold": "13",
+    "details": "เกมสยองขวัญที่ผู้เล่นต้องเอาชีวิตรอดจากโรงพยาบาลจิตเวชที่เต็มไปด้วยความน่ากลัว"
+  },
+  {
+    "id": 14,
+    "name": "Grand Theft Auto V",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbjJMNYNi_UrzRxOf8v6IFYTRMCEx4vWyn3Q&s",
+    "price": 1200,
+    "type": "Open World",
+    "sold": "13",
+    "details": "เกมที่เน้นการสำรวจเมืองใหญ่และการทำภารกิจต่างๆ โดยมีเนื้อหาทั้งการขับรถและการต่อสู้"
+  },
+  {
+    "id": 15,
+    "name": "Minecraft",
+    "images": "https://xboxwire.thesourcemediaassets.com/sites/2/2024/05/Hero-8c18da7c19a1a8811ddb.jpg",
+    "price": 1200,
+    "type": "Open World",
+    "sold": "13",
+    "details": "เกมที่ให้ผู้เล่นสร้างและสำรวจโลกที่สร้างขึ้นเองแบบไม่จำกัด"
+  }
+ 
+]
