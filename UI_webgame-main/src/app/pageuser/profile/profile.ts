@@ -3,7 +3,7 @@ import { Header } from '../../pages/header/header';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Webservice } from '../../services/api/webservice';
-import { UserGetResponse } from '../../model/ีuser_res';
+import { UserGetResponse } from '../../model/user_res';
 import { AuthService } from '../../services/api/auth.service';
 
 @Component({

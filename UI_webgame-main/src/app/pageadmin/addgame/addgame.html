@@ -6,37 +6,37 @@
 
     <div class="form-field">
       <label>ชื่อเกม</label>
-      <input type="text"  />
+      <input type="text" [(ngModel)]="Gname" />
+    </div>
+
+    <div class="form-field" appearance="outline">
+      <label>รูปภาพ</label>
+      <input type="file" (change)="onFileSelected($event)" />
     </div>
 
     <div class="form-field">
-      <label>URL รูปภาพ</label>
-      <input type="text"  />
-    </div>
-
-    <div class="form-field">
-      <label>ราคา</label>
-      <input type="text" />
+      <label>ราคา (บาท)</label>
+      <input type="number" [(ngModel)]="Gprice" />
     </div>
 
     <div class="form-field">
       <label>ประเภทเกม</label>
-      <input type="text"  />
+      <input type="text" [(ngModel)]="category" />
     </div>
 
     <div class="form-field">
       <label>จำนวนที่ขาย</label>
-      <input type="text"/>
+      <input type="number" [(ngModel)]="sold" />
     </div>
 
     <div class="form-field">
       <label>รายละเอียดเกม</label>
-      <textarea rows="4"></textarea>
+      <textarea rows="4" [(ngModel)]="detail"></textarea>
     </div>
 
     <div class="button-row">
-      <button class="add-btn">เพิ่มเกม</button>
-      <button class="cancel-btn">ยกเลิก</button>
+      <button (click)="addNewGameOrEdit()" class="add-btn">เพิ่มเกม</button>
+      <button (click)="goToAdmin()" class="cancel-btn">ยกเลิก</button>
     </div>
   </div>
 </body>

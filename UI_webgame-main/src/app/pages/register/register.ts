@@ -44,14 +44,17 @@ export class Register {
       return;
     }
 
-    const body = {
-      username: this.username,
-      email: this.email,
-      password: this.password,
-    };
+    const formData = new FormData();
+    formData.append('username', this.username);
+    formData.append('email', this.email);
+    formData.append('password', this.password);
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
 
     try {
-      const response = await this.webService.register(body, this.selectedFile);
+      const response = await this.webService.register(formData);
       console.log('✅ Register Success:', response);
 
       alert('สมัครสมาชิกสำเร็จ!');

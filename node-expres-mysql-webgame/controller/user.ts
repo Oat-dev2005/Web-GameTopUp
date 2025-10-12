@@ -16,6 +16,20 @@ const storage = multer.diskStorage({
   },
 });
 
+// 🛡 กรองไฟล์เฉพาะ JPEG / PNG
+const fileFilter = (
+  req: Request,
+  file: Express.Multer.File,
+  cb: multer.FileFilterCallback
+) => {
+  const allowedTypes = ["image/jpeg", "image/png"];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
 const upload = multer({ storage: storage });
 
 router.post("/register", upload.single("image"), (req, res) => {
