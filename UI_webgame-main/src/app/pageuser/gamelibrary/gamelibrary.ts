@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../../pages/header/header';
 
-import games from '/Users/jira/UI_webgame-main/src/assets/game.json';
+import games from '/Users/jira/UI_webgame-main/src/assets/game.json'; // ใช้ path เดิมของคุณได้เลย
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';

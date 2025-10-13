@@ -1,68 +1,62 @@
 import { Component } from '@angular/core';
+import { Webservice } from '../../services/api/webservice';  // Webservice สำหรับเรียก API
+import { AuthService } from '../../services/api/auth.service';  // AuthService สำหรับตรวจสอบสถานะผู้ใช้ที่ล็อกอิน
+import { Router, RouterModule } from '@angular/router';
+import { UserGetResponse } from '../../model/user_res';  // UserGetResponse interface
 import { Header } from '../../pages/header/header';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Webservice } from '../../services/api/webservice';
-import { UserGetResponse } from '../../model/user_res';
-import { AuthService } from '../../services/api/auth.service';
 
 @Component({
   selector: 'app-profile',
-  imports: [Header, RouterModule, CommonModule],
+  imports: [Header,CommonModule,RouterModule],
   templateUrl: './profile.html',
-  styleUrls: ['./profile.scss'],
+  styleUrls: ['./profile.scss']
 })
 export class Profile {
-  user: UserGetResponse | null = null;
-
-  username = '';
-  email = '';
-  role = '';
-  image: string | File = '';
-
-  // imageUrl: string =
-  //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdUwpUCDiwozPqnZc5AqQorU651Mo3vpXXJg&s';
+  user: UserGetResponse | null = null;  // กำหนดประเภทข้อมูลตรงกับ UserGetResponse
+  username: string = '';
+  email: string = '';
+  role: string = '';
+  image: string = '';
+  balance: number = 0;
+  topupHistory: any;
 
   constructor(
-    private router: Router,
-    private webService: Webservice,
-    private route: ActivatedRoute,
-    private auth: AuthService
+    public webService: Webservice,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
+  // เมื่อคอมโพเนนต์โหลด จะเรียก API เพื่อดึงข้อมูลโปรไฟล์
   async ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.user = await this.webService.getOneProfile(id);
+  const userId = this.authService.getUserId();
 
-    if (this.user) {
-      this.username = this.user.username;
-      this.email = this.user.email;
-      this.role = this.user.role;
-      this.image = this.user.image || '';
-    }
-  }
-
-  async EditProfile() {
-    if (!this.user) return;
-
-    const body = {
-      username: this.username,
-      email: this.email,
-      role: this.role,
-      image: this.image,
-    };
-
+  if (userId) {
     try {
-      const response = await this.webService.updateProfile(this.user.id, body);
-      console.log('อัปเดตสำเร็จ:', response);
-      alert('บันทึกข้อมูลสำเร็จ ✅');
-      this.router.navigate(['/']);
+      const profile = await this.webService.getOneProfile(userId);
+
+      if (profile) {
+        // กำหนดค่าผลลัพธ์ที่ได้รับจาก API ลงในตัวแปร
+        this.user = profile.data;
+        this.username = this.user.username || '';
+        this.email = this.user.email || '';
+        this.role = this.user.role || '';
+        this.image = this.user.image || '';
+        this.balance = typeof this.user.balance === 'number' ? this.user.balance : 0;
+        this.topupHistory = this.user.topup_history || [];  // เก็บประวัติการเติมเงิน
+      }
     } catch (error) {
-      console.error('Save failed:', error);
+      console.error('ไม่สามารถดึงข้อมูลโปรไฟล์ได้', error);
+      alert('ไม่สามารถดึงข้อมูลโปรไฟล์');
     }
+  } else {
+    alert('โปรดเข้าสู่ระบบ');
+    this.router.navigate(['/login']);
   }
+}
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

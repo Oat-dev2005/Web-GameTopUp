@@ -105,3 +105,18 @@ html, body {
     width: 100%;
   }
 }
+.form-field select {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+  appearance: none; /* ซ่อน UI เริ่มต้นของ browser */
+}
+
+.form-field select:focus {
+  border-color: #f39c12;
+  outline: none;
+}

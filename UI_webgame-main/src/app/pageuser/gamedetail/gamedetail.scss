@@ -1,39 +1,33 @@
 /* Global styles */
-/* ตั้งพื้นหลังของทั้งหน้า */
 body, html {
-  margin: 0;
-  padding: 0;
+  height: 100%;
   background-color: #121212;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #f0f0f0;
 }
 
-/* ลบ .bg ออก หรือถ้าจะใช้ ให้กำหนดเต็มหน้าจอ */
-.bg {
-  padding: 10px;
-  background-color: #121212;
-}
-
-/* ตัว container เกม ให้พื้นหลังเข้ม */
-.game-container {
-  max-width: 450px;
-  margin: 20px auto;
+/* ตัว container เกม detail */
+.detail-container {
+  max-width: 600px;
+  margin: 30px auto;
   padding: 30px;
   border-radius: 12px;
-  background-color: #1f1f1f; /* สีเข้ม */
+  background-color: #1f1f1f;
   color: #f0f0f0;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
   font-family: inherit;
-  transition: transform 0.3s ease;   
+  transition: transform 0.3s ease;
+  margin-top: 0px;
 }
 
-.game-container:hover {
-  transform: translateY(-5px);
+.detail-container:hover {
+  transform: translateY(-3px);
 }
 
 /* รูปภาพเกม */
-.game-container img {
-  width: 100%;
+.game-img {
+  width: 400px;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 6px 15px rgba(255, 165, 0, 0.5);
   margin-bottom: 20px;
@@ -41,71 +35,59 @@ body, html {
   cursor: pointer;
 }
 
-.game-container img:hover {
+.game-img:hover {
   transform: scale(1.05);
 }
 
-.add-to-cart-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  width: 100%;
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  white-space: nowrap; /* ป้องกันข้อความในปุ่มขึ้นบรรทัดใหม่ */
-}
-
 /* ชื่อเกม */
-.game-container h1 {
-  font-size: 2.2rem;
-  font-weight: 900;
-  margin-bottom: 15px;
+.detail-container h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
   color: #ffcc00;
   text-shadow: 1px 1px 6px #ffa500cc;
-  letter-spacing: 1px;
-}
-
-/* ข้อความ */
-.game-container p {
-  font-size: 1rem;
-  margin: 8px 0;
-  color: #dcdcdc;
-  line-height: 1.4;
-}
-
-.game-container p:nth-child(odd) {
-  color: #ffa500;
-  font-weight: 700;
-}
-
-/* ข้อความเมื่อไม่มีเกม */
-.no-game {
-  max-width: 450px;
-  margin: 60px auto;
-  padding: 30px;
   text-align: center;
-  background-color: #2b2b2b;
-  border-radius: 12px;
-  color: #ff6b6b;
-  font-size: 1.3rem;
-  box-shadow: 0 5px 15px #ff6b6baa;
-  font-family: inherit;
+}
+
+/* ข้อความรายละเอียด */
+.detail-container p {
+  font-size: 1rem;
+  margin: 12px 0;
+  color: #dcdcdc;
+  line-height: 1.5;
+}
+
+.detail-container p strong {
+  color: #ffa500;
+  font-weight: bold;
+}
+
+/* ข้อความกำลังโหลด */
+.detail-container ~ div p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 40px;
+  color: #cccccc;
 }
 
 /* Responsive */
 @media screen and (max-width: 480px) {
-  .game-container {
+  .detail-container {
     max-width: 90%;
-    padding: 15px;
+    padding: 20px;
+  }
+
+  .detail-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .detail-container p {
+    font-size: 0.95rem;
   }
 }
 
-.text {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-  margin-bottom: 10px;
+.conimg {
+  display: flex;  
+  justify-content: center;
+  margin-bottom: 20px;
 }

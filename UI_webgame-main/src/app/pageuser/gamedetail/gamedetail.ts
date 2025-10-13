@@ -1,39 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import games from '/Users/jira/UI_webgame-main/src/assets/game.json'; // ใช้ path เดิมของคุณได้เลย
-import { Header } from '../../pages/header/header';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Webservice } from '../../services/api/webservice';
+import { GameGetResponse } from '../../model/game_res';
+import { Header } from '../../pages/header/header';
 
 @Component({
   selector: 'app-gamedetail',
-  imports: [Header, CommonModule],
+  standalone: true,
+  imports: [CommonModule,Header],
   templateUrl: './gamedetail.html',
-  styleUrls: ['./gamedetail.scss'],
+  styleUrls: ['./gamedetail.scss']
 })
 export class Gamedetail implements OnInit {
-  game: any;
+  game: GameGetResponse | null = null;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private webService: Webservice
+  ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('ได้ id:', id); // ✅ ตรวจว่าขึ้นใน console หรือไม่
-
-    this.game = games.find((g) => g.id === id);
-    console.log('ข้อมูลเกมที่เจอ:', this.game); // ✅ ตรวจว่าขึ้นไหม
+    if (id) {
+      this.game = await this.webService.getOneGame(id);
+      console.log('ข้อมูลเกม:', this.game);
+    }
   }
 
-  // ฟังก์ชันเพิ่มเกมลงตะกร้า
-  addToCart(game: any): void {
-    console.log('เพิ่มเกมลงในตะกร้า:', game);
-
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    cart.push(game);
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    console.log('ตะกร้าหลังจากเพิ่มเกม:', cart);
-
-    // หลังจากเพิ่มเกมแล้วนำทางไปหน้าตะกร้า
-    this.router.navigate(['/cart']);
+  getImage(file?: string) {
+    if (!file) {
+      return 'assets/images/default.jpg';
+    }
+    return this.webService.getImageUrl(file);
   }
 }

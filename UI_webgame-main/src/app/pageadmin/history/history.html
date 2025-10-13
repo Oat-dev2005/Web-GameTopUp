@@ -2,19 +2,18 @@
 
 <body>
   <div class="user-container">
-  <div
-    class="user-card"
-    *ngFor="let user of users"
-    (click)="goToDetail(user)"
-  >
-    <img [src]="user.images.trim()" alt="User Image" />
-    <h3>{{ user.fullname }}</h3>
-    <p class="email">อีเมล: {{ user.email }}</p>
-    <p class="role">
-      สิทธิ์ผู้ใช้: <span [ngClass]="user.role">{{ user.role }}</span>
-    </p>
-    <p class="id">ID: {{ user.id }}</p>
+    <div
+      class="user-card"
+      *ngFor="let user of users"
+      (click)="goToDetail(user)"
+    >
+      <img [src]="user.image ? getImageUrl(user.image) : 'assets/images/default.jpg'" alt="User Image" />
+      <h3>{{ user.username }}</h3>
+      <p class="email">อีเมล: {{ user.email }}</p>
+      <p class="role">
+        สิทธิ์ผู้ใช้: <span [ngClass]="user.role">{{ user.role }}</span>
+      </p>
+      <p class="id">ID: {{ user.id }}</p>
+    </div>
   </div>
-</div>
-
 </body>

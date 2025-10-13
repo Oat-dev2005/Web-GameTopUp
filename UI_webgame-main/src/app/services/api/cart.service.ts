@@ -6,9 +6,18 @@ import { Injectable } from '@angular/core';
 export class CartService {
   private cart: any[] = [];
 
+  constructor() {
+    // โหลด cart จาก localStorage ตอนสร้าง service
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.cart = storedCart;
+  }
+
   // เพิ่มเกมลงในตะกร้า
   addToCart(game: any) {
-    this.cart.push(game);
+    if (!this.cart.some((g) => game.id === game.id)) {
+      this.cart.push(game);
+      this.saveCart();
+    }
   }
 
   // ดึงข้อมูลตะกร้า
@@ -18,11 +27,17 @@ export class CartService {
 
   // ลบเกมออกจากตะกร้า
   removeFromCart(gameId: number) {
-    this.cart = this.cart.filter(game => game.id !== gameId);
+    this.cart = this.cart.filter((game) => game.id !== gameId);
+    this.saveCart();
   }
 
   // เช็คว่ามีเกมนี้ในตะกร้าหรือไม่
   isGameInCart(gameId: number): boolean {
-    return this.cart.some(game => game.id === gameId);
+    return this.cart.some((game) => game.id === gameId);
+  }
+
+  private saveCart() {
+    // บันทึกลง localStorage ด้วย
+    localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 }

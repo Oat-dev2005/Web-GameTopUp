@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../../pages/header/header';
-import games from '/Users/jira/UI_webgame-main/src/assets/game.json'; // เปลี่ยนเป็น relative path
+
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -109,12 +109,15 @@ export class SellPage {
   addToCart(game: GameGetResponse) {
     console.log('เพิ่มเกมลงในตะกร้า:', game);
 
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    cart.push(game);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    let cartIds = JSON.parse(localStorage.getItem('cart') || '[]');
 
-    console.log('ตะกร้าหลังจากเพิ่มเกม:', cart);
+    // ✅ เก็บเฉพาะ id แทนที่จะเก็บทั้ง object
+    if (!cartIds.includes(game.id)) {
+      cartIds.push(game.id);
+      localStorage.setItem('cart', JSON.stringify(cartIds));
+    }
 
-    this.router.navigate(['/cart']);
+    console.log('ตะกร้าหลังจากเพิ่มเกม:', cartIds);
+    alert(`เพิ่ม ${game.Gname} ลงในตะกร้าแล้ว`);
   }
 }

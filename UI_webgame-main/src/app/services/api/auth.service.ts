@@ -36,4 +36,9 @@ export class AuthService {
     const user = this.getUser();
     return user?.role === 'user';
   }
+  getUserId(): number | null {
+  const user = this.getUser();
+  return user ? user.id : null;
+}
+
 }

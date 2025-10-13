@@ -1,25 +1,22 @@
 <app-header></app-header>
-
 <body>
-  <div class="bg">
-  <div *ngIf="game" class="game-container">
-    <div class="text">
-      <h1>{{ game.name }}</h1>
-    </div>
-    <img [src]="game.images" [alt]="game.name" />
-    <p>{{ game.details }}</p>
-    <p>ประเภท: {{ game.type }}</p>
-    <p>ราคา: {{ game.price }}</p>
-    <p>ขายไปแล้ว: {{ game.sold }}</p>
-    <div >ว่างจำหน่าย: 12/12/2024</div>
-    <button class="add-to-cart-btn" (click)="addToCart(game)">
-          เพิ่มลงตะกร้า
-        </button>
+    <div *ngIf="game" class="detail-container">
+  <h2>{{ game.Gname }}</h2>
+  <div class="conimg">
+    <img [src]="getImage(game.Gimage)" [alt]="game.Gname" class="game-img" />
   </div>
+  <p><strong>ราคา:</strong> {{ game.Gprice }} บาท</p>
+  <p><strong>ประเภท:</strong> {{ game.category }}</p>
+  <p><strong>ขายไปแล้ว:</strong> {{ game.sold }}</p>
+  <p><strong>วางจำหน่าย:</strong> {{ game.releasedate | date:'dd/MM/yyyy HH:mm' }}</p>
+  <p><strong>รายละเอียด:</strong> {{ game.detail }}</p>
+</div>
 
-  <div *ngIf="!game" class="no-game">
-    <p>ไม่พบข้อมูลเกม</p>
-  </div>
+<div *ngIf="!game">
+  <p>กำลังโหลดข้อมูลเกม...</p>
 </div>
 </body>
+
+
+
 

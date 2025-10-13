@@ -13,6 +13,8 @@ import { Addgame } from './pageadmin/addgame/addgame';
 import { Historyuser } from './pageadmin/history/history';
 import { Hisdetail } from './pageadmin/hisdetail/hisdetail';
 import { AdminGuard, AuthGuard } from './guards/auth-guard';
+import { Detailadmin } from './pageadmin/detailadmin/detailadmin';
+import { Editgame } from './pageadmin/editgame/editgame';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,4 +33,6 @@ export const routes: Routes = [
   { path: 'gencode', component: Gencode, canActivate: [AdminGuard] },
   { path: 'addgame', component: Addgame, canActivate: [AdminGuard] },
   { path: 'hisdetail', component: Hisdetail, canActivate: [AdminGuard] },
+  { path: 'detailadmin/:id', component: Detailadmin, canActivate: [AdminGuard] },
+  { path: 'editgame/:id', component: Editgame, canActivate: [AdminGuard] },
 ];

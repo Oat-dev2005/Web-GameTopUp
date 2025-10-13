@@ -1,0 +1,49 @@
+.edit-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+.edit-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffd700;
+}
+
+.edit-container label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.edit-container input,
+.edit-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 5px;
+}
+
+.save-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #219150;
+}

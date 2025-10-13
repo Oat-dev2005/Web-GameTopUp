@@ -1,9 +1,11 @@
 export interface GameGetResponse {
   id: number;
   Gname: string;
-  Gimage?: string;
+  Gimage: string;
   Gprice: number;
-  category: string;
   sold: number;
+  category: string;
   detail: string;
+  releasedate: string;
 }
+

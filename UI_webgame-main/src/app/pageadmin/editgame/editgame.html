@@ -1,0 +1,34 @@
+<app-header-admin></app-header-admin>
+
+<div class="edit-container">
+  <h2>แก้ไขข้อมูลเกม</h2>
+
+  <form (ngSubmit)="updateGame()" enctype="multipart/form-data">
+    <label>ชื่อเกม:</label>
+    <input type="text" [(ngModel)]="game.Gname" name="Gname" required />
+
+    <label>ราคา:</label>
+    <input type="number" [(ngModel)]="game.Gprice" name="Gprice" required />
+
+    <div class="form-field">
+      <label>ประเภทเกม</label>
+      <select [(ngModel)]="game.category" name="category" required>
+        <option value="" disabled selected>-- เลือกประเภทเกม --</option>
+        <option value="action">Action</option>
+        <option value="shooter">Shooter</option>
+        <option value="openworld">Open World</option>
+        <option value="horror">Horror</option>
+        <option value="sport">Sport</option>
+      </select>
+    </div>
+
+    <label>รายละเอียด:</label>
+    <textarea [(ngModel)]="game.detail" name="detail" rows="4"></textarea>
+
+    <label>เปลี่ยนรูปเกม (ถ้าต้องการ):</label>
+    <input type="file" (change)="onFileSelected($event)" name="Gimage" />
+
+    <button type="submit" class="save-btn">บันทึก</button>
+  </form>
+</div>
+

@@ -45,7 +45,10 @@
           </button>
         </div>
         <div class="footer">
-          <div class="text">ว่างจำหน่าย: 12/12/2024</div>
+          <div class="text">
+  ว่างจำหน่าย:
+  {{ game.releasedate | date: 'dd/MM/yyyy HH:mm' }}
+</div>
           <div class="text">ขายไปแล้ว: {{ game.sold }}</div>
         </div>
       </a>

@@ -5,18 +5,17 @@ import { conn } from "../dbconnect";
 
 export const router = express.Router();
 
-// 🔹 ตั้งค่า multer สำหรับเก็บรูปในโฟลเดอร์ "uploads"
+// ตั้งค่า multer สำหรับอัปโหลดรูป
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname)); // เช่น: 16965232123.jpg
+    cb(null, uniqueSuffix + path.extname(file.originalname));
   },
 });
 
-// 🛡 กรองไฟล์เฉพาะ JPEG / PNG
 const fileFilter = (
   req: Request,
   file: Express.Multer.File,
@@ -32,9 +31,10 @@ const fileFilter = (
 
 const upload = multer({ storage: storage });
 
+// ✅ สมัครสมาชิก
 router.post("/register", upload.single("image"), (req, res) => {
   const { username, email, password } = req.body;
-  const image = req.file ? req.file.filename : null; // ถ้ามีรูป
+  const image = req.file ? req.file.filename : null;
 
   if (!username || !email || !password) {
     return res.status(400).json({
@@ -59,11 +59,11 @@ router.post("/register", upload.single("image"), (req, res) => {
       success: true,
       message: "สมัครสมาชิกสำเร็จ ✅",
       image: image,
-      // role: role,
     });
   });
 });
 
+// ✅ เข้าสู่ระบบ
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -92,6 +92,7 @@ router.post("/login", (req, res) => {
           username: user.username,
           email: user.email,
           role: user.role,
+          balance: user.balance,
         },
       });
     } else {
@@ -103,25 +104,50 @@ router.post("/login", (req, res) => {
   });
 });
 
+// ✅ ดูโปรไฟล์
 router.get("/profile/:id", (req, res) => {
   const id = req.params.id;
 
-  const sql = "SELECT id, username, email, image, role FROM users WHERE id = ?";
-  conn.query(sql, [id], (err, results: any) => {
+  // ดึงข้อมูลผู้ใช้จากตาราง users
+  const userSql =
+    "SELECT id, username, email, image, role, balance FROM users WHERE id = ?";
+  conn.query(userSql, [id], (err, userResults: any[]) => {
     if (err) {
       console.error("DB ERROR:", err);
       return res
         .status(500)
-        .json({ success: false, message: "ดึงข้อมูลไม่สำเร็จ" });
+        .json({ success: false, message: "ดึงข้อมูลผู้ใช้ล้มเหลว" });
     }
-    if (results.length === 0) {
+
+    if (userResults.length === 0) {
       return res.status(404).json({ success: false, message: "ไม่พบผู้ใช้" });
     }
 
-    return res.json({ success: true, data: results[0] });
+    const user = userResults[0];
+
+    // ดึงประวัติการเติมเงินจากตาราง wallet โดยเช็คว่า owner ตรงกับ user id
+    const walletSql =
+      "SELECT * FROM wallet WHERE owner = ? ORDER BY date DESC LIMIT 5";
+    conn.query(walletSql, [id], (err2, walletResults) => {
+      if (err2) {
+        console.error("DB ERROR:", err2);
+        return res
+          .status(500)
+          .json({ success: false, message: "ดึงประวัติการเติมเงินล้มเหลว" });
+      }
+
+      return res.json({
+        success: true,
+        data: {
+          ...user,
+          topup_history: walletResults, // ส่งข้อมูลประวัติการเติมเงิน
+        },
+      });
+    });
   });
 });
 
+// ✅ แก้ไขโปรไฟล์
 router.put("/profile/:id", (req, res) => {
   const id = req.params.id;
   const { username, email } = req.body;
@@ -141,5 +167,117 @@ router.put("/profile/:id", (req, res) => {
         .json({ success: false, message: "อัปเดตไม่สำเร็จ" });
     }
     return res.json({ success: true, message: "อัปเดตข้อมูลสำเร็จ ✅" });
+  });
+});
+
+// ✅ เติมเงิน
+router.post("/topup", (req, res) => {
+  const { userId, amount } = req.body;
+
+  if (!userId || amount == null) {
+    return res.status(400).json({ success: false, message: "ข้อมูลไม่ครบ" });
+  }
+
+  const amt = parseFloat(amount);
+  if (isNaN(amt) || amt <= 0) {
+    return res
+      .status(400)
+      .json({ success: false, message: "จำนวนเงินไม่ถูกต้อง" });
+  }
+
+  console.log("Received userId:", userId);
+  console.log("Received amount:", amt);
+
+  // อัปเดตยอดเงินในฐานข้อมูล
+  const sqlUpdate = `UPDATE users SET balance = balance + ? WHERE id = ?`;
+  conn.query(sqlUpdate, [amt, userId], (err, result) => {
+    if (err) {
+      console.error("Balance update failed:", err);
+      return res
+        .status(500)
+        .json({ success: false, message: "อัปเดตยอดเงินล้มเหลว" });
+    }
+
+    // เพิ่มประวัติการเติมเงิน
+    const sqlWallet = `INSERT INTO wallet (type, money, owner) VALUES (?, ?, ?)`;
+    conn.query(sqlWallet, ["topup", amt, userId], (err, result) => {
+      if (err) {
+        console.error("Wallet insert failed:", err);
+        return res
+          .status(500)
+          .json({ success: false, message: "บันทึกประวัติล้มเหลว" });
+      }
+
+      res.json({ success: true, message: "เติมเงินสำเร็จ ✅" });
+    });
+  });
+
+  // ดึงข้อมูลผู้ใช้ทั้งหมด
+  router.get("/user", (req, res) => {
+    const sql = "SELECT id, username, email, role, image FROM users";
+    conn.query(sql, (err, results) => {
+      if (err) {
+        console.error("DB ERROR:", err);
+        return res
+          .status(500)
+          .json({ success: false, message: "ดึงข้อมูลผู้ใช้ล้มเหลว" });
+      }
+      res.json(results);
+    });
+  });
+});
+
+// ซื้อเกม → หัก balance
+router.post("/purchase", (req, res) => {
+  const { userId, totalPrice } = req.body;
+
+  if (!userId || totalPrice == null) {
+    return res.status(400).json({ success: false, message: "ข้อมูลไม่ครบ" });
+  }
+
+  // ดึง balance ปัจจุบัน
+  const sqlBalance = "SELECT balance FROM users WHERE id = ?";
+  conn.query(sqlBalance, [userId], (err, results: any) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ success: false, message: "เกิดข้อผิดพลาด" });
+    }
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({ success: false, message: "ไม่พบผู้ใช้" });
+    }
+
+    const balance = results[0].balance;
+    if (balance < totalPrice) {
+      return res.json({ success: false, message: "เงินไม่พอ" });
+    }
+
+    // หัก balance
+    const newBalance = balance - totalPrice;
+    const sqlUpdate = "UPDATE users SET balance = ? WHERE id = ?";
+    conn.query(sqlUpdate, [newBalance, userId], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res
+          .status(500)
+          .json({ success: false, message: "อัปเดตยอดเงินล้มเหลว" });
+      }
+
+      // เพิ่มประวัติการซื้อเกม (option)
+      const sqlWallet =
+        "INSERT INTO wallet (type, money, owner) VALUES (?, ?, ?)";
+      conn.query(sqlWallet, ["purchase", totalPrice, userId], (err, result) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .json({ success: false, message: "บันทึกประวัติซื้อเกมล้มเหลว" });
+        }
+
+        res.json({ success: true, message: "ซื้อเกมสำเร็จ ✅", newBalance });
+      });
+    });
   });
 });

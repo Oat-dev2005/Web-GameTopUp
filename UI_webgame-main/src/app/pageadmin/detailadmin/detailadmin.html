@@ -1,2 +1,26 @@
 <app-header-admin></app-header-admin>
-<p>detailadmin works!</p>
+<body>
+    <div *ngIf="game" class="detail-container">
+  <h2>{{ game.Gname }}</h2>
+  <div class="conimg">
+    <img [src]="getImage(game.Gimage)" [alt]="game.Gname" class="game-img" />
+  </div>
+  <p><strong>ราคา:</strong> {{ game.Gprice }} บาท</p>
+  <p><strong>ประเภท:</strong> {{ game.category }}</p>
+  <p><strong>ขายไปแล้ว:</strong> {{ game.sold }}</p>
+  <p><strong>วางจำหน่าย:</strong> {{ game.releasedate | date:'dd/MM/yyyy HH:mm' }}</p>
+  <p><strong>รายละเอียด:</strong> {{ game.detail }}</p>
+  <div class="but">
+    <button [routerLink]="['/editgame', game.id]" class="edit-btn">
+  แก้ไขเกม
+</button>
+<button (click)="deleteGame()" class="delete-btn">
+  ลบเกม
+</button>
+  </div>
+</div>
+
+<div *ngIf="!game">
+  <p>กำลังโหลดข้อมูลเกม...</p>
+</div>
+</body>

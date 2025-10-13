@@ -1,79 +1,53 @@
 <app-header></app-header>
 
-<div class="con">
-  <div class="user-profile-card">
-    <!-- <img [src]="imageUrl" class="user-image" /> -->
-    <div>email: {{ email }}</div>
-    <div>name: {{ username }}</div>
-    <div>role: {{ role }}</div>
-    <div>cash : 10000 bath</div>
-    <a routerLink="/money" class="but">เติมตัง</a>
-    <a (click)="logout()" class="logout">ออกจากระบบ</a>
-  </div>
+<body>
+  <div class="con">
+    <div class="user-profile-card">
+      <div *ngIf="user; else loading">
+        <img
+          *ngIf="user.image"
+          [src]="webService.getImageUrl(user.image)"
+          class="user-image"
+          alt="User Image"
+        />
+        <div>Email: {{ user.email }}</div>
+        <div>Name: {{ user.username }}</div>
+        <div>Role: {{ user.role }}</div>
+        <div>Balance: {{ user.balance | number : "1.0-2" }} บาท</div>
 
-  <div class="payment-history-container">
-    <h2>ประวัติการชำระเงิน</h2>
-    <ul class="payment-history-list">
-      <li class="payment-item">
-        <div class="game-title">เติมเงินเข้าระบบ</div>
-        <div class="payment-type">เติมเงิน</div>
-        <div class="amount">500 บาท</div>
-        <div class="date">2025-09-28</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เกม: Space Battle</div>
-        <div class="payment-type">ซื้อเกม</div>
-        <div class="amount">1200 บาท</div>
-        <div class="date">2025-09-25</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เติมเงินเข้าระบบ</div>
-        <div class="payment-type">เติมเงิน</div>
-        <div class="amount">300 บาท</div>
-        <div class="date">2025-09-20</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เกม: Monster Hunt</div>
-        <div class="payment-type">ซื้อเกม</div>
-        <div class="amount">1500 บาท</div>
-        <div class="date">2025-09-18</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เติมเงินเข้าระบบ</div>
-        <div class="payment-type">เติมเงิน</div>
-        <div class="amount">250 บาท</div>
-        <div class="date">2025-09-15</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เกม: Speed Racer</div>
-        <div class="payment-type">ซื้อเกม</div>
-        <div class="amount">1300 บาท</div>
-        <div class="date">2025-09-12</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เติมเงินเข้าระบบ</div>
-        <div class="payment-type">เติมเงิน</div>
-        <div class="amount">400 บาท</div>
-        <div class="date">2025-09-10</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เติมเงินเข้าระบบ</div>
-        <div class="payment-type">ซื้อเกม</div>
-        <div class="amount">1000 บาท</div>
-        <div class="date">2025-09-08</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เติมเงินเข้าระบบ</div>
-        <div class="payment-type">เติมเงิน</div>
-        <div class="amount">350 บาท</div>
-        <div class="date">2025-09-05</div>
-      </li>
-      <li class="payment-item">
-        <div class="game-title">เกม: Battle Arena</div>
-        <div class="payment-type">ซื้อเกม</div>
-        <div class="amount">1600 บาท</div>
-        <div class="date">2025-09-02</div>
-      </li>
-    </ul>
+        <a routerLink="/money" class="but">เติมตัง</a>
+        <button (click)="logout()" class="logout">ออกจากระบบ</button>
+      </div>
+      <ng-template #loading>
+        <p>กำลังโหลดข้อมูลผู้ใช้...</p>
+      </ng-template>
+    </div>
+
+    <div *ngIf="topupHistory.length > 0; else noHistory">
+      <h3>ประวัติการทำรายการ</h3>
+      <ul class="payment-history-list">
+        <li *ngFor="let transaction of topupHistory" class="payment-item">
+          <div class="type">
+            ประเภท:
+            <span
+              [ngClass]="{
+                topup: transaction.type === 'เติมเงิน',
+                game: transaction.type === 'ซื้อเกม'
+              }"
+              >{{ transaction.type }}</span
+            >
+          </div>
+          <div class="amount">
+            จำนวนเงิน: {{ transaction.money | number : "1.0-2" }} บาท
+          </div>
+          <div class="date">
+            วันที่: {{ transaction.date | date : "short" }}
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noHistory>
+      <p>ยังไม่มีประวัติการเติมเงิน</p>
+    </ng-template>
   </div>
-</div>
+</body>

@@ -21,7 +21,14 @@
 
     <div class="form-field">
       <label>ประเภทเกม</label>
-      <input type="text" [(ngModel)]="category" />
+      <select [(ngModel)]="category">
+        <option value="" disabled selected>-- เลือกประเภทเกม --</option>
+        <option value="action">Action</option>
+        <option value="shooter">Shooter</option>
+        <option value="openworld">Open World</option>
+        <option value="horror">Horror</option>
+        <option value="sport">Sport</option>
+      </select>
     </div>
 
     <div class="form-field">
