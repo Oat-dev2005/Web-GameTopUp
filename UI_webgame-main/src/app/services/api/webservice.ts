@@ -102,4 +102,10 @@ export class Webservice {
     const response = await lastValueFrom(this.http.post(url, body));
     return response;
   }
+
+  public async getUserLibrary(userId: number) {
+    const url = this.getApiEndpoint() + '/user/library/' + userId;
+    const response = await lastValueFrom(this.http.get(url));
+    return response;
+  }
 }

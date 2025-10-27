@@ -281,3 +281,29 @@ router.post("/purchase", (req, res) => {
     });
   });
 });
+
+// ✅ ดึงเกมที่ user ซื้อแล้ว
+router.get("/library/:id", (req, res) => {
+  const userId = req.params.id;
+
+  const sql = `
+    SELECT g.id, g.Gname, g.Gtype, g.Gprice, g.Gimage
+    FROM game_purchases gp
+    JOIN games g ON gp.game_id = g.id
+    WHERE gp.user_id = ?
+  `;
+
+  conn.query(sql, [userId], (err, results) => {
+    if (err) {
+      console.error("DB ERROR:", err);
+      return res
+        .status(500)
+        .json({ success: false, message: "ดึงข้อมูลไม่สำเร็จ" });
+    }
+
+    return res.json({
+      success: true,
+      data: results,
+    });
+  });
+});
