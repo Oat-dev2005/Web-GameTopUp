@@ -1,5 +1,7 @@
 <app-header></app-header>
+
 <body>
+<<<<<<< Updated upstream
   <div class="search">
   <!-- ช่องค้นหาจากชื่อเกม -->
   <div class="search-container">
@@ -46,6 +48,29 @@
         <div class="text">ขายไปแล้ว: {{ game.sold }}</div>
       </div>
     </a>
+=======
+  <div class="library-container">
+    <h2>คลังเกมของฉัน</h2>
+
+    <div *ngIf="loading">กำลังโหลด...</div>
+    <div *ngIf="!loading && purchases.length === 0">
+      <p>ยังไม่มีเกมที่ซื้อ</p>
+    </div>
+
+    <div class="game-grid" *ngIf="!loading && purchases.length > 0">
+      <div class="game-card" *ngFor="let game of purchases; trackBy: trackById">
+        <a [routerLink]="['/sellpage', game.id]">
+          <img [src]="getImage(game.Gimage)" [alt]="game.Gname" />
+          <div class="game-name">{{ game.Gname }}</div>
+          <div class="text">ประเภท: {{ game.category }}</div>
+          <div class="text">
+            ซื้อเมื่อ: {{ game.purchase_date | date : "dd/MM/yyyy HH:mm" }}
+          </div>
+        </a>
+        <button (click)="openGame(game.id)">ดูรายละเอียด</button>
+      </div>
+    </div>
+>>>>>>> Stashed changes
   </div>
 </div>
 </body>

@@ -10,19 +10,38 @@
     </div>
 
     <!-- แสดงรายการเกมในตะกร้า -->
-    <div *ngFor="let game of cart">
-      <div class="cart-item">
-        <img [src]="getImage(game.Gimage)" [alt]="game.Gname" />
-        <div>
-          <div class="text1">{{ game.Gname }}</div>
-          <div class="price">ราคา: {{ game.Gprice }} บาท</div>
-          <div class="text">ประเภท: {{ game.category }}</div>
-          <button (click)="removeFromCart(game.id)">ลบออกจากตะกร้า</button>
+    <div *ngFor="let game of cart" class="cart-item-wrapper">
+      <a [routerLink]="['/sellpage', game.id]" class="cart-item-link">
+        <div class="cart-item">
+          <img [src]="getImage(game.Gimage)" [alt]="game.Gname" />
+          <div>
+            <div class="text1">{{ game.Gname }}</div>
+            <div class="price">ราคา: {{ game.Gprice }} บาท</div>
+            <div class="text">ประเภท: {{ game.category }}</div>
+          </div>
         </div>
-      </div>
+      </a>
+      <!-- ปุ่มลบยังแยกออกมา -->
+      <button (click)="removeFromCart(game.id)" class="remove-btn">
+        ลบออกจากตะกร้า
+      </button>
     </div>
 
     <!-- ช่องใส่รหัสส่วนลด -->
+    <div class="discount-section">
+      <label for="discountCode">รหัสส่วนลด</label>
+      <input
+        type="text"
+        id="discountCode"
+        [(ngModel)]="discountCode"
+        placeholder="กรอกรหัสส่วนลด"
+      />
+      <button (click)="applyDiscount()">ใช้รหัสส่วนลด</button>
+      <p *ngIf="discountApplied">ส่วนลด: {{ discountAmount }} บาท</p>
+      <p *ngIf="discountApplied">
+        ราคาหลังหักส่วนลด: {{ finalPrice | number }} บาท
+      </p>
+    </div>
 
     <!-- แสดงผลรวมของราคาเกม -->
     <div class="total-price">
@@ -31,24 +50,5 @@
 
     <!-- ปุ่มซื้อเกม -->
     <button (click)="buyGames()" class="but">ซื้อเกม</button>
-  </div>
-  <div class="discount-section">
-    <label for="discountCode">รหัสส่วนลด</label>
-    <!-- <input
-      type="text"
-      id="discountCode"
-      [(ngModel)]="discountCode"
-      placeholder="กรอกรหัสส่วนลด"
-    /> -->
-    <input
-      type="text"
-      [(ngModel)]="discountCode"
-      placeholder="กรอกรหัสส่วนลด"
-    />
-    <button (click)="applyDiscount()">ใช้รหัสส่วนลด</button>
-    <p *ngIf="discountApplied">ส่วนลด: {{ discountAmount }} บาท</p>
-    <p *ngIf="discountApplied">
-      ราคาหลังหักส่วนลด: {{ finalPrice | number }} บาท
-    </p>
   </div>
 </div>

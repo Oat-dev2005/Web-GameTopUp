@@ -1,207 +1,116 @@
-/* กำหนด Layout ของ Game Container */
-html, body {
-  background-color: #121212; /* ตั้งพื้นหลังเป็นสีดำ */
-  color: #fff; /* ข้อความเป็นสีขาว */
-  height: 100%; /* ให้เต็มความสูงของหน้า */
-  margin: 0; /* ลบ margin ของ body */
-  padding: 0; /* ลบ padding ของ body */
-}
-
-
-* {
-  box-sizing: border-box; /* ทำให้การคำนวณขนาดขององค์ประกอบถูกต้อง */
-}
-
-.game-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 คอลัมน์เท่ากัน */
-  gap: 30px;
-  padding: 30px;
-  height: auto;
+/* General styles for the whole page */
+body {
+  font-family: 'Arial', sans-serif;
   background-color: #121212;
-  justify-items: stretch;
-  box-sizing: border-box;
+  color: #E0E0E0;
+  margin: 0;
+  padding: 0;
 }
 
-.search-results {
-  background-color: #121212; /* สีดำ */
-}
+/* Header styling */
 
-/* Responsive รองรับหน้าจอเล็ก */
-@media screen and (max-width: 1024px) {
-  .game-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .game-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .game-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* การจัดสไตล์ของการ์ดเกม */
-.game-card {
-  background-color: #1f1f1f;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  text-align: left;
+/* Container for the library content */
+.library-container {
   padding: 20px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* เอฟเฟกต์เมื่อ hover */
+/* Title for the library */
+h2 {
+  color: #E0E0E0;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Loader text */
+.loading {
+  text-align: center;
+  font-size: 1.2em;
+  color: #B0B0B0;
+}
+
+/* No games message */
+.no-games {
+  text-align: center;
+  font-size: 1.2em;
+  color: #B0B0B0;
+}
+
+/* Styling for the game grid */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Individual game card */
+.game-card {
+  background-color: #2C2C2C;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for game card */
 .game-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
-/* รูปเกม */
+/* Game card image */
 .game-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 5px;
-  border: 2px solid #333;
-  margin-bottom: 15px;
+  border-bottom: 2px solid #444;
 }
 
-a {
-  text-decoration: none; /* ลบเส้นใต้จากลิงก์ทั้งหมด */
-}
-
-/* ชื่อเกม */
+/* Game name */
 .game-name {
-  font-size: 18px;
+  font-size: 1.2em;
   font-weight: bold;
-  color: #fff;
-  margin: 12px 0;
-  text-decoration: none;
-}
-
-/* ข้อความสถานะ (เช่น วันที่) */
-.game-status {
-  font-size: 14px;
-  color: #aaa;
-  margin-top: 8px;
-}
-
-/* แถวราคา + ปุ่ม */
-.price-cart-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-/* ราคา */
-.price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #f39c12;
-}
-
-/* ปุ่ม */
-.add-to-cart-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  white-space: nowrap; /* ป้องกันข้อความในปุ่มขึ้นบรรทัดใหม่ */
-}
-
-.add-to-cart-btn:hover {
-  background-color: #c0392b;
-}
-
-/* ป้ายขายดี หรืออันดับขายดี */
-.game-name.top-5 {
-  color: #ff4747; /* สีแดงสด */
-  font-weight: bold;
-  font-size: 16px;
-  text-transform: uppercase;
+  padding: 10px;
+  color: #E0E0E0;
+  background-color: #3C3C3C;
   margin-bottom: 10px;
+  text-align: center;
 }
 
-/* ข้อความทั่วไป */
+/* Game category and purchase date */
 .text {
-  font-size: 14px;
-  font-weight: 500;
-  color: #aaa;
-  margin: 12px 0;
+  font-size: 1em;
+  color: #B0B0B0;
+  padding: 5px 10px;
+  text-align: center;
 }
 
-/* Footer */
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.search-container {
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.search-input {
+/* Button styling for "View details" */
+button {
+  width: 100%;
   padding: 10px;
-  width: 300px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  outline: none;
+  background-color: #6200EE;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
 }
 
-.search-input:focus {
-  border-color: #4caf50;
+button:hover {
+  background-color: #3700B3;
 }
 
-.search-container {
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-}
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 
-.search-input {
-  padding: 10px;
-  width: 300px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  outline: none;
-}
-
-.search-input:focus {
-  border-color: #4caf50;
-}
-
-.search {
-  display: flex;
-  justify-content: space-around;
-  background-color: #121212;
-  padding-top: 20px;
-}
-
-.t {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  margin-top: 30px;
+  h2 {
+    font-size: 1.5em;
+  }
 }

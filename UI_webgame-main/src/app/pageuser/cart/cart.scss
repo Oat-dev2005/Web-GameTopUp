@@ -209,3 +209,27 @@ body {
 .total-price {
   color: #fff;
 }
+
+/* ปุ่มลบออกจากตะกร้า */
+.remove-btn {
+  background-color: #e74c3c; /* สีแดง */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: flex-start;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+.cart-item .text a {
+  color: inherit; /* ใช้สีตามตัวหนังสือ */
+  text-decoration: none; /* ไม่มีเส้นใต้ */
+  cursor: default; /* ปิด cursor pointer ถ้าไม่อยากให้เป็นลิงก์ */
+}
