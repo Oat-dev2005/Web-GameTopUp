@@ -20,7 +20,11 @@ router.get("/:userId", (req, res) => {
   conn.query(sql, [userId], (err, results) => {
     if (err) {
       console.error("DB ERROR (get purchases):", err);
-      return res.status(500).json({ success: false, message: "ดึงรายการที่ซื้อแล้วล้มเหลว", error: err });
+      return res.status(500).json({
+        success: false,
+        message: "ดึงรายการที่ซื้อแล้วล้มเหลว",
+        error: err,
+      });
     }
     return res.json({ success: true, data: results });
   });
@@ -37,11 +41,14 @@ router.post("/check", (req, res) => {
     return res.status(400).json({ success: false, message: "ข้อมูลไม่ครบ" });
   }
 
-  const sql = "SELECT COUNT(*) as cnt FROM game_purchases WHERE user_id = ? AND game_id = ?";
+  const sql =
+    "SELECT COUNT(*) as cnt FROM game_purchases WHERE user_id = ? AND game_id = ?";
   conn.query(sql, [userId, gameId], (err, results: any[]) => {
     if (err) {
       console.error("DB ERROR (check purchase):", err);
-      return res.status(500).json({ success: false, message: "ตรวจสอบล้มเหลว", error: err });
+      return res
+        .status(500)
+        .json({ success: false, message: "ตรวจสอบล้มเหลว", error: err });
     }
     const purchased = results[0].cnt > 0;
     return res.json({ success: true, purchased });
@@ -61,7 +68,12 @@ router.post("/check", (req, res) => {
 router.post("/buy", (req, res) => {
   const { userId, gameIds, totalPrice } = req.body;
 
-  if (!userId || !Array.isArray(gameIds) || gameIds.length === 0 || totalPrice == null) {
+  if (
+    !userId ||
+    !Array.isArray(gameIds) ||
+    gameIds.length === 0 ||
+    totalPrice == null
+  ) {
     return res.status(400).json({ success: false, message: "ข้อมูลไม่ครบ" });
   }
 
@@ -71,7 +83,11 @@ router.post("/buy", (req, res) => {
   conn.query(checkSql, [userId, ...gameIds], (err, existingRows: any[]) => {
     if (err) {
       console.error("DB ERROR (check existing purchases):", err);
-      return res.status(500).json({ success: false, message: "ตรวจสอบการซื้อซ้ำล้มเหลว", error: err });
+      return res.status(500).json({
+        success: false,
+        message: "ตรวจสอบการซื้อซ้ำล้มเหลว",
+        error: err,
+      });
     }
 
     const alreadyBoughtIds = existingRows.map((r) => r.game_id);
@@ -88,7 +104,9 @@ router.post("/buy", (req, res) => {
     conn.query(balanceSql, [userId], (err2, balResults: any[]) => {
       if (err2) {
         console.error("DB ERROR (get balance):", err2);
-        return res.status(500).json({ success: false, message: "ดึงยอดเงินล้มเหลว", error: err2 });
+        return res
+          .status(500)
+          .json({ success: false, message: "ดึงยอดเงินล้มเหลว", error: err2 });
       }
       if (!balResults || balResults.length === 0) {
         return res.status(404).json({ success: false, message: "ไม่พบผู้ใช้" });
@@ -105,7 +123,11 @@ router.post("/buy", (req, res) => {
       conn.beginTransaction((tranErr) => {
         if (tranErr) {
           console.error("TRANSACTION ERROR:", tranErr);
-          return res.status(500).json({ success: false, message: "เริ่ม transaction ไม่ได้", error: tranErr });
+          return res.status(500).json({
+            success: false,
+            message: "เริ่ม transaction ไม่ได้",
+            error: tranErr,
+          });
         }
 
         // a) อัปเดตยอดเงินผู้ใช้
@@ -115,30 +137,44 @@ router.post("/buy", (req, res) => {
           if (errUpd) {
             console.error("DB ERROR (update balance):", errUpd);
             return conn.rollback(() => {
-              res.status(500).json({ success: false, message: "อัปเดตยอดเงินล้มเหลว", error: errUpd });
+              res.status(500).json({
+                success: false,
+                message: "อัปเดตยอดเงินล้มเหลว",
+                error: errUpd,
+              });
             });
           }
 
           // b) บันทึกประวัติใน wallet (type = 'purchase')
-          const walletSql = "INSERT INTO wallet (type, money, owner) VALUES (?, ?, ?)";
+          const walletSql =
+            "INSERT INTO wallet (type, money, owner) VALUES (?, ?, ?)";
           // บันทึกเป็นจำนวนบวก แต่ใน UI เราจะตีความว่าเป็นรายการซื้อ (หรือจะเก็บ negative ก็ได้ตาม schema)
           conn.query(walletSql, ["purchase", total, userId], (errWallet) => {
             if (errWallet) {
               console.error("DB ERROR (insert wallet):", errWallet);
               return conn.rollback(() => {
-                res.status(500).json({ success: false, message: "บันทึก wallet ล้มเหลว", error: errWallet });
+                res.status(500).json({
+                  success: false,
+                  message: "บันทึก wallet ล้มเหลว",
+                  error: errWallet,
+                });
               });
             }
 
             // c) บันทึกแต่ละเกมลง game_purchases (bulk insert)
             const now = new Date();
             const values = gameIds.map((gid: number) => [userId, gid, now]);
-            const insertSql = "INSERT INTO game_purchases (user_id, game_id, purchase_date) VALUES ?";
+            const insertSql =
+              "INSERT INTO game_purchases (user_id, game_id, purchase_date) VALUES ?";
             conn.query(insertSql, [values], (errInsert) => {
               if (errInsert) {
                 console.error("DB ERROR (insert game_purchases):", errInsert);
                 return conn.rollback(() => {
-                  res.status(500).json({ success: false, message: "บันทึกการซื้อล้มเหลว", error: errInsert });
+                  res.status(500).json({
+                    success: false,
+                    message: "บันทึกการซื้อล้มเหลว",
+                    error: errInsert,
+                  });
                 });
               }
 
@@ -147,7 +183,11 @@ router.post("/buy", (req, res) => {
                 if (commitErr) {
                   console.error("COMMIT ERROR:", commitErr);
                   return conn.rollback(() => {
-                    res.status(500).json({ success: false, message: "commit ล้มเหลว", error: commitErr });
+                    res.status(500).json({
+                      success: false,
+                      message: "commit ล้มเหลว",
+                      error: commitErr,
+                    });
                   });
                 }
 

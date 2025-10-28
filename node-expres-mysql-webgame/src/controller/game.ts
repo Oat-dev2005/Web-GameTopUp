@@ -111,29 +111,29 @@ router.get("/:id", (req, res) => {
 });
 
 // DELETE ลบเกมตาม id
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   const id = req.params.id;
-  const sql = 'DELETE FROM games WHERE id = ?';
+  const sql = "DELETE FROM games WHERE id = ?";
 
   conn.query(sql, [id], (err, result) => {
     if (err) {
-      console.error('DB ERROR:', err);
+      console.error("DB ERROR:", err);
       return res.status(500).json({
         success: false,
-        message: 'ลบเกมไม่สำเร็จ',
+        message: "ลบเกมไม่สำเร็จ",
         error: err,
       });
     }
 
     res.json({
       success: true,
-      message: 'ลบเกมสำเร็จ ✅',
+      message: "ลบเกมสำเร็จ ✅",
     });
   });
 });
 
 // PUT อัปเดตเกม (เฉพาะ Gname, Gprice, category, detail, Gimage)
-router.put('/:id', upload.single("Gimage"), (req, res) => {
+router.put("/:id", upload.single("Gimage"), (req, res) => {
   const id = req.params.id;
   const { Gname, Gprice, category, detail } = req.body;
   const Gimage = req.file ? req.file.filename : null;
@@ -153,7 +153,7 @@ router.put('/:id', upload.single("Gimage"), (req, res) => {
       Gprice = ?, 
       category = ?, 
       detail = ?
-      ${Gimage ? ', Gimage = ?' : ''}
+      ${Gimage ? ", Gimage = ?" : ""}
     WHERE id = ?
   `;
 
@@ -164,9 +164,11 @@ router.put('/:id', upload.single("Gimage"), (req, res) => {
 
   conn.query(sql, params, (err, result) => {
     if (err) {
-      console.error('DB Error:', err);
-      return res.status(500).json({ success: false, message: 'อัปเดตเกมไม่สำเร็จ', error: err });
+      console.error("DB Error:", err);
+      return res
+        .status(500)
+        .json({ success: false, message: "อัปเดตเกมไม่สำเร็จ", error: err });
     }
-    res.json({ success: true, message: 'อัปเดตเกมเรียบร้อย ✅' });
+    res.json({ success: true, message: "อัปเดตเกมเรียบร้อย ✅" });
   });
 });
