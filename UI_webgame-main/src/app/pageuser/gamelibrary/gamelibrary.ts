@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
-import { Header } from '../../pages/header/header';
-
-import games from '/Users/jira/UI_webgame-main/src/assets/game.json'; // ใช้ path เดิมของคุณได้เลย
-import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-=======
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Header } from '../../pages/header/header';
 import { Webservice } from '../../services/api/webservice';
 import { AuthService } from '../../services/api/auth.service';
->>>>>>> Stashed changes
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -22,59 +14,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
 })
 export class Gamelibrary implements OnInit {
-<<<<<<< Updated upstream
-  games: any[] = [];
-  top5GameIds: number[] = [];
-  searchByName: string = ''; // ตัวแปรสำหรับค้นหาจากชื่อเกม
-  searchByType: string = ''; // ตัวแปรสำหรับค้นหาจากประเภทเกม
-
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-    this.games = games
-      .map((game) => ({
-        ...game,
-        sold: Number(game.sold),
-      }))
-      .sort((a, b) => b.sold - a.sold);
-
-    this.top5GameIds = this.games.slice(0, 5).map((game) => game.id);
-  }
-
-  // ฟังก์ชันสำหรับตรวจสอบว่าเกมเป็น Top 5 หรือไม่
-  isTop5(gameId: number): boolean {
-    return this.top5GameIds.includes(gameId);
-  }
-
-  // ฟังก์ชันสำหรับ tracking games ตาม id
-  trackByGameId(index: number, game: any): number {
-    return game.id;
-  }
-
-  // ฟังก์ชันกรองเกมตามชื่อและประเภท
-  getFilteredGames() {
-    return this.games.filter((game) => {
-      const nameQuery = this.searchByName.toLowerCase();
-      const typeQuery = this.searchByType.toLowerCase();
-      return (
-        game.name.toLowerCase().includes(nameQuery) &&
-        game.type.toLowerCase().includes(typeQuery)
-      );
-    });
-  }
-
-  // ฟังก์ชันสำหรับเพิ่มเกมลงในตะกร้า
-  addToCart(game: any) {
-    console.log('เพิ่มเกมลงในตะกร้า:', game);
-
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    cart.push(game);
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    console.log('ตะกร้าหลังจากเพิ่มเกม:', cart);
-
-    this.router.navigate(['/cart']);
-=======
    purchases: any[] = [];
   loading = true;
 
@@ -112,7 +51,6 @@ export class Gamelibrary implements OnInit {
 
   trackById(index: number, item: any) {
     return item.id;
->>>>>>> Stashed changes
   }
 
   openGame(id: number) {

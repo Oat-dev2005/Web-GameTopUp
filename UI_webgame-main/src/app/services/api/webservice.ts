@@ -38,15 +38,6 @@
       return response as { data: UserGetResponse };
     }
 
-<<<<<<< Updated upstream
-  public async purchaseGames(userId: number, totalPrice: number) {
-    const url = this.getApiEndpoint() + '/user/purchase';
-    const body = { userId, totalPrice };
-    const response = await lastValueFrom(this.http.post(url, body));
-    return response;
-  }
-}
-=======
     public async updateProfile(id: number, data: any) {
       const url = this.getApiEndpoint() + '/user/profile/' + id;
       const response = await lastValueFrom(this.http.put(url, data));
@@ -137,4 +128,3 @@
       return response;
     }
   }
->>>>>>> Stashed changes
