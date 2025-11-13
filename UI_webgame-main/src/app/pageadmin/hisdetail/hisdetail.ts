@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderAdmin } from '../../pages/header-admin/header-admin';
-import jsonData from '/web_A/Web-GameTopUp-main/UI_webgame-main/src/assets/user.json'; // เปลี่ยนเป็น relative path
+// import jsonData from '/Web-GameTopUp/UI_webgame-main/src/assets/user.json'; // เปลี่ยนเป็น relative path
 import { CommonModule } from '@angular/common';
 
 @Component({
